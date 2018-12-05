@@ -51,6 +51,9 @@ int main(int argc, char const *argv[])
     int* normal_p_to_const2 = (int*)&var_const;
     // OK, const cast change low-level constness, i.e., `const int*` to `int*`.
     int * normal_p_to_const3 = const_cast<int*>(&var_const);
+    // OK, assignment will not care top-level constness.
+    int var_const_casted = var_const;
+
     std::cout << "normal_p_to_const 2 and 3:" << *normal_p_to_const2 << " " << *normal_p_to_const3 << std::endl;
     // Try to change const variable's value. Maybe it's OK.
     *normal_p_to_const2 = 88;
